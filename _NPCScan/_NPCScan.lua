@@ -32,12 +32,21 @@ NS.OptionsDefault = {
 		[ 1312 ] = true; -- Bloody Rare (Outlands)
 		[ 2257 ] = true; -- Frostbitten (Northrend)
 		[ 7439 ] = true; -- Glorious! (Pandaria)
+		[ 7317 ] = true; -- One Many Army (Pandaria)
+--		[ 7932 ] = true; -- I'm In Your Base, Killing Your Dudes (Pandaria)
+		[ 8103 ] = true; -- Champions of Lei Shen (Pandaria)
+		[ 8714 ] = true; -- Timeless Champion (Pandaria)
 	};
 };
 
 do
 	local DEEPHOLM = GetMapNameByID( 640 );
 	local MOLTEN_FRONT = GetMapNameByID( 795 );
+	local VALE_OF_ETERNAL_BLOSSOMS = GetMapNameByID( 811 );
+	local KRASARANG_WILDS = GetMapNameByID( 857 );
+	local ISLE_OF_THUNDER = GetMapNameByID( 928 );
+	local TIMELESS_ISLE = GetMapNameByID( 951 );
+
 	NS.OptionsCharacterDefault = {
 		Version = NS.Version;
 		NPCs = {
@@ -89,6 +98,12 @@ do
 			[ 54324 ] = L.NPCs[ 54324 ]; -- Skitterflame
 			[ 54338 ] = L.NPCs[ 54338 ]; -- Anthriss
 			[ 62346 ] = L.NPCs[ 62346 ]; -- Galleon
+			[ 68317 ] = L.NPCs[ 68317 ]; -- Mavis Harms <Champion of the Shadows>
+			[ 68318 ] = L.NPCs[ 68318 ]; -- Dalan Nightbreaker <Champion of Arms>
+			[ 68319 ] = L.NPCs[ 68319 ]; -- Disha Fearwarden <Champion of the Light>
+			[ 68320 ] = L.NPCs[ 68320 ]; -- Ubunti the Shade <Champion of the Shadows>
+			[ 68321 ] = L.NPCs[ 68321 ]; -- Kar Warmaker <Champion of Arms>
+			[ 68322 ] = L.NPCs[ 68322 ]; -- Muerta <Champion of the Light>
 		};
 		NPCWorldIDs = {
 			[ 18684 ] = 3; -- Bro'Gaz the Clanless
@@ -139,15 +154,25 @@ do
 			[ 54324 ] = MOLTEN_FRONT; -- Skitterflame
 			[ 54338 ] = MOLTEN_FRONT; -- Anthriss
 			[ 62346 ] = 6; -- Galleon
+			[ 68317 ] = KRASARANG_WILDS; -- Mavis Harms <Champion of the Shadows>
+			[ 68318 ] = KRASARANG_WILDS; -- Dalan Nightbreaker <Champion of Arms>
+			[ 68319 ] = KRASARANG_WILDS; -- Disha Fearwarden <Champion of the Light>
+			[ 68320 ] = KRASARANG_WILDS; -- Ubunti the Shade <Champion of the Shadows>
+			[ 68321 ] = KRASARANG_WILDS; -- Kar Warmaker <Champion of Arms>
+			[ 68322 ] = KRASARANG_WILDS; -- Muerta <Champion of the Light>
 		};
 	};
 end
 
-
+NS.AchievementsOrder = { 1312, 2257, 7317, 7439, 8103, 8714 };
 NS.Achievements = { --- Criteria data for each achievement.
 	[ 1312 ] = { WorldID = 3; }; -- Bloody Rare (Outlands)
 	[ 2257 ] = { WorldID = 4; }; -- Frostbitten (Northrend)
 	[ 7439 ] = { WorldID = 6; }; -- Glorious! (Pandaria)
+	[ 7317 ] = { WorldID = VALE_OF_ETERNAL_BLOSSOMS; }; -- One Many Army (Pandaria)
+--	[ 7932 ] = { WorldID = KRASARANG_WILDS; }; -- I'm In Your Base, Killing Your Dudes (Pandaria)
+	[ 8103 ] = { WorldID = ISLE_OF_THUNDER; }; -- Champions of Lei Shen (Pandaria)
+	[ 8714 ] = { WorldID = TIMELESS_ISLE; }; -- Timeless Champion (Pandaria)
 };
 do
 	local VirtualContinents = { --- Continents without physical maps aren't used.
@@ -519,6 +544,13 @@ do
 	local FactionRestrictions = { -- [NpcID] = FactionGroup to enable for
 		[ 51071 ] = "Horde"; -- Captain Florence
 		[ 51079 ] = "Alliance"; -- Captain Foulwind
+		
+		[ 68317 ] = "Alliance"; -- Champion of the Shadows slain - Mavis Harms
+		[ 68318 ] = "Alliance"; -- Champion of Arms slain - Dalan Nightbreaker
+		[ 68319 ] = "Alliance"; -- Champion of the Light slain - Disha Fearwarden
+		[ 68320 ] = "Horde"; -- Champion of the Shadows slain - Ubunti the Shade
+		[ 68321 ] = "Horde"; -- Champion of Arms slain - Kar Warmaker
+		[ 68322 ] = "Horde"; -- Champion of the Light slain - Muerta
 	};
 	--- @return True if NpcID should be a default for this character.
 	function IsDefaultNPCValid ( NpcID )
@@ -877,6 +909,7 @@ function NS.Frame:PLAYER_LOGIN ( Event )
 		if ( Version < "5.0.0.1" ) then
 			-- 5.0.0.1: Added MoP's rare achievement.
 			OptionsCharacter.Achievements[ 7439 ] = true; -- Glorious!
+			OptionsCharacter.Achievements[ 7317 ] = true; -- One Many Army (Pandaria)
 			Version = "5.0.0.1";
 		end
 		if ( Version < "5.0.0.2" ) then
@@ -886,8 +919,28 @@ function NS.Frame:PLAYER_LOGIN ( Event )
 		end
 		if ( Version < "5.0.0.5" ) then
 			-- 5.0.0.5: Added Galleon.
-			AddDefault( 62346 ); -- Galleon
+--			AddDefault( 62346 ); -- Galleon
 			Version = "5.0.0.5";
+		end
+		if ( Version < "5.1.0.0" ) then
+			-- 5.1.0.0: Added Champions of <I'm In Your Base, Killing Your Dudes>
+			AddDefault(68317); -- Champion of the Shadows slain - Mavis Harms
+			AddDefault(68318); -- Champion of Arms slain - Dalan Nightbreaker 
+			AddDefault(68319); -- Champion of the Light slain - Disha Fearwarden
+			AddDefault(68320); -- Champion of the Shadows slain - Ubunti the Shade
+			AddDefault(68321); -- Champion of Arms slain - Kar Warmaker			
+			AddDefault(68322); -- Champion of the Light slain - Muerta	
+			Version = "5.1.0.0";
+		end
+		if ( Version < "5.2.0.0" ) then
+			-- 5.2.0.0: Added Champions of Lei Shen
+			Options.Achievements[ 8130 ] = true; -- Champions of Lei Shen (Pandaria)
+			Version = "5.2.0.0";
+		end
+		if ( Version < "5.4.0.0" ) then
+			-- 5.4.0.0: Added Timeless Champion
+			Options.Achievements[ 8714 ] = true; -- Timeless Champion (Pandaria)
+			Version = "5.4.0.0";
 		end
 		OptionsCharacter.Version = NS.Version;
 	end
@@ -1022,7 +1075,7 @@ for AchievementID, Achievement in pairs( NS.Achievements ) do
 	Achievement.NPCsActive = {}; -- [ NpcID ] = CriteriaID;
 	for Criteria = 1, GetAchievementNumCriteria( AchievementID ) do
 		local _, CriteriaType, _, _, _, _, _, AssetID, _, CriteriaID = GetAchievementCriteriaInfo( AchievementID, Criteria );
-		if ( CriteriaType == 0 ) then -- Mob kill type
+		if ( CriteriaType == 0 and AssetID ~= 0 ) then -- Mob kill type
 			Achievement.Criteria[ CriteriaID ] = AssetID;
 		end
 	end

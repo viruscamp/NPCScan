@@ -531,7 +531,7 @@ NS.TableContainer:SetPoint( "BOTTOM", NS.NPCControls );
 NS.TableContainer:SetBackdrop( { bgFile = [[Interface\DialogFrame\UI-DialogBox-Background]]; } );
 
 -- Add all tabs
-local LastTab;
+local LastTab, LineFirstTab;
 local TabCount = 0;
 local function AddTab ( ID, Update, Activate, Deactivate )
 	TabCount = TabCount + 1;
@@ -567,16 +567,23 @@ local function AddTab ( ID, Update, Activate, Deactivate )
 
 	PanelTemplates_DeselectTab( Tab );
 	if ( LastTab ) then
-		Tab:SetPoint( "LEFT", LastTab, "RIGHT", -4, 0 );
+		if ( TabCount % 4 == 1 ) then
+			Tab:SetPoint( "TOPLEFT", LineFirstTab, "BOTTOMLEFT", 0, 9 );
+			LineFirstTab = Tab;
+		else
+			Tab:SetPoint( "LEFT", LastTab, "RIGHT", -4, 0 );
+		end
 	else
-		Tab:SetPoint( "BOTTOMLEFT", NS.TableContainer, "TOPLEFT" );
+		Tab:SetPoint( "TOPLEFT", NS.AddFoundCheckbox, "BOTTOMLEFT", 0, 0 );
+		LineFirstTab = Tab;
 	end
 	LastTab = Tab;
 end
 AddTab( "NPC", NS.NPCUpdate, NS.NPCActivate, NS.NPCDeactivate );
-for AchievementID in pairs( _NPCScan.Achievements ) do
+local _, AchievementID
+for _, AchievementID in pairs( _NPCScan.AchievementsOrder ) do
 	AddTab( AchievementID, NS.AchievementUpdate, NS.AchievementActivate, NS.AchievementDeactivate );
 end
-
+NS.TableContainer:SetPoint( "TOP", LastTab, "BOTTOM", 0, 0 );
 
 InterfaceOptions_AddCategory( NS );

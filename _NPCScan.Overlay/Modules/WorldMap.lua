@@ -25,6 +25,15 @@ do
 	end
 end
 do
+	local t = {};
+	for AchievementID, Achievement in pairs( _NPCScan.Achievements ) do
+		for CriteriaID, NpcID in pairs( Achievement.Criteria ) do
+			t[NpcID] = { AchievementID=AchievementID, CriteriaID=CriteriaID};
+		end
+	end
+	local ImageReady = [[|TInterface\RaidFrame\ReadyCheck-Ready:0|t]]
+	local ImageNotReady = [[|TInterface\RaidFrame\ReadyCheck-NotReady:0|t]]
+	local ImageTranparent = [[|TInterface\BUTTONS\UI-PassiveHighlight:0|t]]
 	local Count, Height, Width;
 	--- Callback for ApplyZone to add an NPC's name to the key.
 	local function KeyAddLine ( self, PathData, FoundX, FoundY, R, G, B, NpcID )
@@ -42,8 +51,17 @@ do
 		else
 			Line:Show();
 		end
+		
+		local _;
+		local Completed = false;
+		if t[NpcID] then
+			_, _, Completed = GetAchievementCriteriaInfoByID( t[NpcID].AchievementID, t[NpcID].CriteriaID );
+		end
 
-		Line:SetText( L.MODULE_WORLDMAP_KEY_FORMAT:format( NS.AchievementNPCNames[ NpcID ] or L.NPCs[ NpcID ] or NpcID ) );
+		Line:SetText( 
+			( _NPCScan.TestID( NpcID ) and ImageNotReady or ImageTranparent )..
+			( Completed and ImageReady or ImageTranparent )..
+			L.MODULE_WORLDMAP_KEY_FORMAT:format( NS.AchievementNPCNames[ NpcID ] or L.NPCs[ NpcID ] or NpcID ) );
 		Line:SetTextColor( R, G, B );
 
 		Width = max( Width, Line:GetStringWidth() );

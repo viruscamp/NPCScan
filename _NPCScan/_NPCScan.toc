@@ -1,4 +1,4 @@
-## Interface: 50001
+## Interface: 50400
 ## Title: _|cffCCCC88NPCScan|r
 ## Notes: Scans NPCs around you for rare ones.
 ## Notes-deDE: Scant NSCs in deiner Nähe nach seltenen.
@@ -28,8 +28,8 @@
 ## X-Credits-ruRU: Localization: StingerSoft, Sarymian, KVVV, The_DimoK, ichik, Ant1dotE, tick095, dartraiden
 ## X-Credits-zhCN: Localization: digmouse, tss1398383123, ananhaid, redsaru, dh0000
 ## X-Credits-zhTW: Localization: s8095324, pepper_ep, zhTW, laincat, alpha2009, machihchung
-## Version: 5.0.0.5
-## X-Date: 2012-10-12
+## Version: 5.4.0.0
+## X-Date: 2013-9-29
 ## X-Category: Miscellaneous
 ## X-License: GPLv3
 ## X-Email: saiket.wow@gmail.com
