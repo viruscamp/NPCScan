@@ -51,6 +51,19 @@ select( 2, ... ).L = setmetatable( {
 		[ 60491 ] = "Sha of Anger",
 		[ 62346 ] = "Galleon",
 		[ 64403 ] = "Alani",
+		
+		-- I'm In Your Base, Killing Your Dudes
+		[ 68317 ] = "Mavis Harms",
+		[ 68318 ] = "Dalan Nightbreaker",
+		[ 68319 ] = "Disha Fearwarden",
+		[ 68320 ] = "Ubunti the Shade",
+		[ 68321 ] = "Kar Warmaker",
+		[ 68322 ] = "Muerta",
+		
+		[ 69768 ] = "Zandalari Warscout",
+		[ 69769 ] = "Zandalari Warbringer",
+		[ 69841 ] = "Zandalari Warbringer",
+		[ 69842 ] = "Zandalari Warbringer",
 	};
 
 	CONFIG_ALPHA = "Alpha",

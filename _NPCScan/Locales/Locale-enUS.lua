@@ -55,12 +55,19 @@ select( 2, ... ).L = setmetatable( {
 		[ 54324 ] = "Skitterflame",
 		[ 54338 ] = "Anthriss",
 		[ 62346 ] = "Galleon",
-		[ 68317 ] = "Mavis Harms <Champion of the Shadows>",
-		[ 68318 ] = "Dalan Nightbreaker <Champion of Arms>",
-		[ 68319 ] = "Disha Fearwarden <Champion of the Light>",
-		[ 68320 ] = "Ubunti the Shade <Champion of the Shadows>",
-		[ 68321 ] = "Kar Warmaker <Champion of Arms>",
-		[ 68322 ] = "Muerta <Champion of the Light>",
+		
+		-- I'm In Your Base, Killing Your Dudes
+		[ 68317 ] = "Mavis Harms",
+		[ 68318 ] = "Dalan Nightbreaker",
+		[ 68319 ] = "Disha Fearwarden",
+		[ 68320 ] = "Ubunti the Shade",
+		[ 68321 ] = "Kar Warmaker",
+		[ 68322 ] = "Muerta",
+		
+		[ 69768 ] = "Zandalari Warscout",
+		[ 69769 ] = "Zandalari Warbringer",
+		[ 69841 ] = "Zandalari Warbringer",
+		[ 69842 ] = "Zandalari Warbringer",
 	};
 
 	BUTTON_FOUND = "NPC found!",

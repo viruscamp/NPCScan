@@ -104,6 +104,10 @@ do
 			[ 68320 ] = L.NPCs[ 68320 ]; -- Ubunti the Shade <Champion of the Shadows>
 			[ 68321 ] = L.NPCs[ 68321 ]; -- Kar Warmaker <Champion of Arms>
 			[ 68322 ] = L.NPCs[ 68322 ]; -- Muerta <Champion of the Light>
+			[ 69768 ] = L.NPCs[ 69768 ]; -- Zandalari Warscout
+			[ 69769 ] = L.NPCs[ 69769 ]; -- Zandalari Warbringer
+			[ 69841 ] = L.NPCs[ 69841 ]; -- Zandalari Warbringer
+			[ 69842 ] = L.NPCs[ 69842 ]; -- Zandalari Warbringer
 		};
 		NPCWorldIDs = {
 			[ 18684 ] = 3; -- Bro'Gaz the Clanless
@@ -160,6 +164,10 @@ do
 			[ 68320 ] = KRASARANG_WILDS; -- Ubunti the Shade <Champion of the Shadows>
 			[ 68321 ] = KRASARANG_WILDS; -- Kar Warmaker <Champion of Arms>
 			[ 68322 ] = KRASARANG_WILDS; -- Muerta <Champion of the Light>
+			[ 69768 ] = 6; -- Zandalari Warscout
+			[ 69769 ] = 6; -- Zandalari Warbringer
+			[ 69841 ] = 6; -- Zandalari Warbringer
+			[ 69842 ] = 6; -- Zandalari Warbringer
 		};
 	};
 end
@@ -544,13 +552,13 @@ do
 	local FactionRestrictions = { -- [NpcID] = FactionGroup to enable for
 		[ 51071 ] = "Horde"; -- Captain Florence
 		[ 51079 ] = "Alliance"; -- Captain Foulwind
-		
-		[ 68317 ] = "Alliance"; -- Champion of the Shadows slain - Mavis Harms
-		[ 68318 ] = "Alliance"; -- Champion of Arms slain - Dalan Nightbreaker
-		[ 68319 ] = "Alliance"; -- Champion of the Light slain - Disha Fearwarden
-		[ 68320 ] = "Horde"; -- Champion of the Shadows slain - Ubunti the Shade
-		[ 68321 ] = "Horde"; -- Champion of Arms slain - Kar Warmaker
-		[ 68322 ] = "Horde"; -- Champion of the Light slain - Muerta
+
+		[ 68317 ] = "Horde"; -- Mavis Harms <Champion of the Shadows>
+		[ 68318 ] = "Horde"; -- Dalan Nightbreaker <Champion of Arms>
+		[ 68319 ] = "Horde"; -- Disha Fearwarden <Champion of the Light>
+		[ 68320 ] = "Alliance"; -- Ubunti the Shade <Champion of the Shadows>
+		[ 68321 ] = "Alliance"; -- Kar Warmaker <Champion of Arms>
+		[ 68322 ] = "Alliance"; -- Muerta <Champion of the Light>
 	};
 	--- @return True if NpcID should be a default for this character.
 	function IsDefaultNPCValid ( NpcID )
@@ -924,17 +932,21 @@ function NS.Frame:PLAYER_LOGIN ( Event )
 		end
 		if ( Version < "5.1.0.0" ) then
 			-- 5.1.0.0: Added Champions of <I'm In Your Base, Killing Your Dudes>
-			AddDefault(68317); -- Champion of the Shadows slain - Mavis Harms
-			AddDefault(68318); -- Champion of Arms slain - Dalan Nightbreaker 
-			AddDefault(68319); -- Champion of the Light slain - Disha Fearwarden
-			AddDefault(68320); -- Champion of the Shadows slain - Ubunti the Shade
-			AddDefault(68321); -- Champion of Arms slain - Kar Warmaker			
-			AddDefault(68322); -- Champion of the Light slain - Muerta	
+			AddDefault( 68317 ); -- Mavis Harms <Champion of the Shadows>
+			AddDefault( 68318 ); -- Dalan Nightbreaker <Champion of Arms>
+			AddDefault( 68319 ); -- Disha Fearwarden <Champion of the Light>
+			AddDefault( 68320 ); -- Ubunti the Shade <Champion of the Shadows>
+			AddDefault( 68321 ); -- Kar Warmaker <Champion of Arms>
+			AddDefault( 68322 ); -- Muerta <Champion of the Light>	
 			Version = "5.1.0.0";
 		end
 		if ( Version < "5.2.0.0" ) then
 			-- 5.2.0.0: Added Champions of Lei Shen
 			Options.Achievements[ 8130 ] = true; -- Champions of Lei Shen (Pandaria)
+			AddDefault( 69768 ); -- Zandalari Warscout
+			AddDefault( 69769 ); -- Zandalari Warbringer
+			AddDefault( 69841 ); -- Zandalari Warbringer
+			AddDefault( 69842 ); -- Zandalari Warbringer
 			Version = "5.2.0.0";
 		end
 		if ( Version < "5.4.0.0" ) then
