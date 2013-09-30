@@ -200,7 +200,7 @@ do
 		local Texture = NS.TextureCreate( self, Layer, R, G, B );
 		Texture:SetTexture( CirclePath );
 		Texture:SetPoint( "CENTER", self, "TOPLEFT", x * Width, -y * Height );
-		Texture:SetSize( 0.15 * Width, 0.15 * Height );
+		Texture:SetSize( 16, 16 );
 	end
 end
 --- Recycles all textures added to a frame using TextureCreate.
@@ -247,7 +247,7 @@ do
 			end
 		elseif ( typePathData == "table" ) then
 			local k, v;
-			for k, v in PathData do
+			for k, v in pairs(PathData) do
 				local x, y = floor(v / 10000) / 10000, (v % 10000) / 10000;
 				NS.TextureCircleAdd( self, Layer, R, G, B, x, y );
 			end

@@ -49,11 +49,11 @@ local PointData = {
 };
 
 local mapid, mapdata;
-for mapid, mapdata in ipairs(PointData) do
+for mapid, mapdata in pairs(PointData) do
 	local org_mapdata = PathData[ mapid ];
 	if org_mapdata then
 		local npcid, npcdata;
-		for npcid, npcdata in ipairs(mapdata) do
+		for npcid, npcdata in pairs(mapdata) do
 			org_mapdata[ npcid ] = npcdata;
 		end
 	else
