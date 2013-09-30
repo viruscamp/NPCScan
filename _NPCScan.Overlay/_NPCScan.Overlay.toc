@@ -62,6 +62,7 @@ _NPCScan.Overlay.lua
 _NPCScan.Overlay.Config.lua
 _NPCScan.Overlay.Modules.lua
 _NPCScan.Overlay.PathData.lua
+_NPCScan.Overlay.PointData.lua
 
 # Canvas modules
 Modules\WorldMapTemplate.lua

@@ -192,6 +192,16 @@ do
 			WindowY * ( CosScaleY + SinScaleX * ShearFactor ),
 			WindowY * ( ( CosScaleY + SinScaleX * ( 1 + ShearFactor ) ) * BorderOffset + By - MinY ) / BorderScale );
 	end
+	
+	local CirclePath = [[Interface\AddOns\]]..AddOnName..[[\Skin\0skull]]
+	function NS:TextureCircleAdd ( Layer, R, G, B, x, y )
+		-- Get a texture
+		local Width, Height = self:GetSize();
+		local Texture = NS.TextureCreate( self, Layer, R, G, B );
+		Texture:SetTexture( CirclePath );
+		Texture:SetPoint( "CENTER", self, "TOPLEFT", x * Width, -y * Height );
+		Texture:SetSize( 0.15 * Width, 0.15 * Height );
+	end
 end
 --- Recycles all textures added to a frame using TextureCreate.
 function NS:TextureRemoveAll ()
@@ -222,17 +232,25 @@ end
 do
 	local COORD_MAX = 2 ^ 16 - 1;
 	local BYTES_PER_TRIANGLE = 2 * 2 * 3;
-	local Ax1, Ax2, Ay1, Ay2, Bx1, Bx2, By1, By2, Cx1, Cx2, Cy1, Cy2;
 	--- Draws the given NPC's path onto a frame.
 	-- @param PathData  Binary path data string.
 	function NS:DrawPath ( PathData, Layer, R, G, B )
-		local PointsOffset, LinesOffset, TrianglesOffset = NS.GetPathPrimitiveOffsets( PathData );
-		for Index = TrianglesOffset, #PathData, BYTES_PER_TRIANGLE do
-			Ax1, Ax2, Ay1, Ay2, Bx1, Bx2, By1, By2, Cx1, Cx2, Cy1, Cy2 = PathData:byte( Index, Index + BYTES_PER_TRIANGLE - 1 );
-			NS.TextureAdd( self, Layer, R, G, B,
-				( Ax1 * 256 + Ax2 ) / COORD_MAX, 1 - ( Ay1 * 256 + Ay2 ) / COORD_MAX,
-				( Bx1 * 256 + Bx2 ) / COORD_MAX, 1 - ( By1 * 256 + By2 ) / COORD_MAX,
-				( Cx1 * 256 + Cx2 ) / COORD_MAX, 1 - ( Cy1 * 256 + Cy2 ) / COORD_MAX );
+		local typePathData = type(PathData)
+		if ( typePathData == "string" ) then
+			local PointsOffset, LinesOffset, TrianglesOffset = NS.GetPathPrimitiveOffsets( PathData );
+			for Index = TrianglesOffset, #PathData, BYTES_PER_TRIANGLE do
+				local Ax1, Ax2, Ay1, Ay2, Bx1, Bx2, By1, By2, Cx1, Cx2, Cy1, Cy2 = PathData:byte( Index, Index + BYTES_PER_TRIANGLE - 1 );
+				NS.TextureAdd( self, Layer, R, G, B,
+					( Ax1 * 256 + Ax2 ) / COORD_MAX, 1 - ( Ay1 * 256 + Ay2 ) / COORD_MAX,
+					( Bx1 * 256 + Bx2 ) / COORD_MAX, 1 - ( By1 * 256 + By2 ) / COORD_MAX,
+					( Cx1 * 256 + Cx2 ) / COORD_MAX, 1 - ( Cy1 * 256 + Cy2 ) / COORD_MAX );
+			end
+		elseif ( typePathData == "table" ) then
+			local k, v;
+			for k, v in PathData do
+				local x, y = floor(v / 10000) / 10000, (v % 10000) / 10000;
+				NS.TextureCircleAdd( self, Layer, R, G, B, x, y );
+			end
 		end
 	end
 end
