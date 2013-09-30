@@ -68,6 +68,12 @@ select( 2, ... ).L = setmetatable( {
 		[ 69769 ] = "Zandalari Warbringer",
 		[ 69841 ] = "Zandalari Warbringer",
 		[ 69842 ] = "Zandalari Warbringer",
+		
+		[ 71876 ] = "Zarhym",
+		[ 72032 ] = "Captain Zvezdan",
+		[ 73297 ] = "Fishgorged Crane (corpse)",
+		[ 73174 ] = "Archiereus of Flame",
+		[ 73666 ] = "Archiereus of Flame",
 	};
 
 	BUTTON_FOUND = "NPC found!",

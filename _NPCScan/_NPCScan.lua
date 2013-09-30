@@ -108,6 +108,11 @@ do
 			[ 69769 ] = L.NPCs[ 69769 ]; -- Zandalari Warbringer
 			[ 69841 ] = L.NPCs[ 69841 ]; -- Zandalari Warbringer
 			[ 69842 ] = L.NPCs[ 69842 ]; -- Zandalari Warbringer
+			[ 71876 ] = L.NPCs[ 71876 ]; -- Zarhym
+			[ 72032 ] = L.NPCs[ 72032 ]; -- Captain Zvezdan
+			[ 73297 ] = L.NPCs[ 73297 ]; -- Fishgorged Crane (corpse)
+			[ 73174 ] = L.NPCs[ 73174 ]; -- Archiereus of Flame
+			[ 73666 ] = L.NPCs[ 73666 ]; -- Archiereus of Flame
 		};
 		NPCWorldIDs = {
 			[ 18684 ] = 3; -- Bro'Gaz the Clanless
@@ -168,6 +173,11 @@ do
 			[ 69769 ] = 6; -- Zandalari Warbringer
 			[ 69841 ] = 6; -- Zandalari Warbringer
 			[ 69842 ] = 6; -- Zandalari Warbringer
+			[ 71876 ] = TIMELESS_ISLE; -- Zarhym
+			[ 72032 ] = TIMELESS_ISLE; -- Captain Zvezdan
+			[ 73297 ] = TIMELESS_ISLE; -- Fishgorged Crane (corpse)
+			[ 73174 ] = TIMELESS_ISLE; -- Archiereus of Flame
+			[ 73666 ] = TIMELESS_ISLE; -- Archiereus of Flame
 		};
 	};
 end
@@ -952,6 +962,11 @@ function NS.Frame:PLAYER_LOGIN ( Event )
 		if ( Version < "5.4.0.0" ) then
 			-- 5.4.0.0: Added Timeless Champion
 			Options.Achievements[ 8714 ] = true; -- Timeless Champion (Pandaria)
+			AddDefault( 71876 ); -- Zarhym
+			AddDefault( 72032 ); -- Captain Zvezdan
+			AddDefault( 73297 ); -- Fishgorged Crane (corpse)
+			AddDefault( 73174 ); -- Archiereus of Flame
+			AddDefault( 73666 ); -- Archiereus of Flame
 			Version = "5.4.0.0";
 		end
 		OptionsCharacter.Version = NS.Version;
